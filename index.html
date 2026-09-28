@@ -3,16 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Орозбий Ходжебеков </title>
+    <title>Ходжебеков Орозбий — Интерактивдүү Портфолио</title>
+
+    <!-- SEO ЖАНА ИЗДӨӨ СИСТЕМАЛАРЫ ҮЧҮН МЕТА-ТЕГДЕР -->
+    <meta name="description" content="Ходжебеков Орозбий - Веб иштеп чыгуучу, QuizBoom жана DD Online тиркемелеринин автору.">
+    <meta name="keywords" content="Ходжебеков Орозбий, Khodzhebekov, DD Online, QuizBoom, иштеп чыгуучу, Кыргызстан">
+    <meta name="author" content="Ходжебеков Орозбий">
+
+    <meta property="og:title" content="Ходжебеков Орозбий — Интерактивдүү Портфолио">
+    <meta property="og:description" content="Веб иштеп чыгуучу, оюн түзүүчү жана DD Online тиркемесинин автору.">
+    <meta property="og:image" content="photo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Google Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ходжебеков Орозбий",
+      "alternateName": "Orozby Khodzhebekov",
+      "jobTitle": "Developer / Иштеп чыгуучу",
+      "sameAs": [
+        "https://t.me/Khodzhebekovv",
+        "https://play.google.com/store/apps/details?id=com.ddonline.app"
+      ],
+      "knowsAbout": ["Web Development", "DD Online", "QuizBoom", "JavaScript", "HTML/CSS"]
+    }
+    </script>
+
     <style>
-        /* НЕГИЗГИ СТИЛДЕР ЖАНА ӨЗГӨРМӨЛӨР */
+        /* НЕГИЗГИ ӨЗГӨРМӨЛӨР ЖАНА ТҮСТӨР (Heart of the Mountain Cinematic Theme) */
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(22, 31, 48, 0.65);
-            --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-            --accent-glow: rgba(56, 189, 248, 0.25);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-main: #07090e;
+            --card-bg: rgba(16, 22, 34, 0.75);
+            --gold-accent: #f59e0b;
+            --gold-glow: rgba(245, 158, 11, 0.35);
+            --cyan-accent: #06b6d4;
+            --cyan-glow: rgba(6, 182, 212, 0.35);
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
         * {
@@ -23,62 +52,38 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-light);
             overflow-x: hidden;
             position: relative;
         }
 
-        /* 1. ЭКРАНДЫН ҮСТҮНДӨГҮ СКРОЛЛ ПРОГРЕСС СЫЗЫГЫ */
-        .scroll-progress {
+        /* 1. ЭКРАНДЫН ҮСТҮНДӨГҮ АЛТЫН СИНИМА СЫЗЫГЫ */
+        .scroll-bar {
             position: fixed;
             top: 0;
             left: 0;
-            height: 4px;
-            background: var(--primary-gradient);
+            height: 3px;
+            background: linear-gradient(90deg, #f59e0b, #06b6d4, #ec4899);
             width: 0%;
-            z-index: 9999;
-            box-shadow: 0 0 10px #38bdf8;
+            z-index: 10000;
+            box-shadow: 0 0 12px #f59e0b;
             transition: width 0.1s ease-out;
         }
 
-        /* 2. АРТКЫ ФОНДО КЫЙМЫЛДАГАН НЕОН ШАРЛАР (AMBIENT ORBS) */
-        .bg-orb {
+        /* 2. АРТКЫ ФОНДО КЫЙМЫЛДАГАН УЧКУНДАР ҮЧҮН CANVAS */
+        #particles-canvas {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            opacity: 0.5;
             pointer-events: none;
-            transition: transform 0.2s ease-out;
         }
 
-        .orb-1 {
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: #0284c7;
-        }
-
-        .orb-2 {
-            top: 40%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: #6366f1;
-        }
-
-        .orb-3 {
-            bottom: -10%;
-            left: 20%;
-            width: 550px;
-            height: 550px;
-            background: #a855f7;
-        }
-
-        /* 3. БАШКЫ БЕТ (HERO SECTION) */
+        /* 3. БАШКЫ КИНО-ЭКРАН (HERO SECTION) */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -88,97 +93,118 @@
             text-align: center;
             padding: 40px 20px;
             position: relative;
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.08) 0%, rgba(7, 9, 14, 0.95) 70%);
         }
 
-        .badge {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #38bdf8;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
+        .cinematic-tag {
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.08);
+            color: var(--gold-accent);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
             animation: fadeInDown 1s ease-out;
         }
 
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             margin: 0;
-            font-weight: 800;
-            background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc, #38bdf8);
-            background-size: 300% 300%;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 20%, #f59e0b 60%, #38bdf8 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientMove 6s infinite linear, fadeInDown 1.2s ease-out;
-            letter-spacing: -1px;
+            animation: shine 5s linear infinite, fadeInDown 1.3s ease-out;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: var(--text-muted);
+            color: var(--text-dim);
             margin-top: 20px;
-            max-width: 650px;
-            line-height: 1.6;
-            animation: fadeInUp 1.4s ease-out;
+            max-width: 680px;
+            line-height: 1.7;
+            animation: fadeInUp 1.5s ease-out;
         }
 
-        .scroll-down {
-            margin-top: 50px;
-            color: var(--text-muted);
-            font-size: 14px;
+        .scroll-hint {
+            margin-top: 60px;
+            color: var(--gold-accent);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            animation: bounce 2s infinite;
+            gap: 10px;
+            animation: pulseBounce 2.5s infinite;
         }
 
-        /* 4. СКРОЛЛ БОЛГОНДО ЧЫГУУЧУ КАРТОЧКАЛАР (GLASSMORPHISM) */
+        /* 4. КАРТОЧКАЛАР ЖАНА БЛОКТОР (GLASSMORPHISM) */
         section {
             padding: 40px 20px 100px 20px;
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 35px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            margin-bottom: 40px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            opacity: 0.5;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 25px 50px var(--accent-glow);
+            transform: translateY(-10px) scale(1.01);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 30px 60px rgba(245, 158, 11, 0.15);
         }
 
         .card h2 {
             margin-top: 0;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #fff;
-            position: relative;
+            letter-spacing: 1px;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
         }
 
         .card h2::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -8px;
             left: 0;
-            width: 100%;
+            width: 50%;
             height: 3px;
-            background: var(--primary-gradient);
+            background: var(--gold-accent);
             border-radius: 2px;
+            box-shadow: 0 0 10px var(--gold-accent);
         }
 
         .card p {
@@ -188,105 +214,138 @@
             margin: 0 0 15px 0;
         }
 
-        /* КӨНДҮМДӨР ТИЗМЕСИ (TAGS) */
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+        /* КӨНДҮМДӨР ТИЗМЕСИ (GLOW TAGS) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
         }
 
-        .skills-list li {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 18px;
-            border-radius: 12px;
+        .skill-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px 20px;
+            border-radius: 16px;
             color: #e2e8f0;
-            font-weight: 500;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             transition: 0.3s;
         }
 
-        .skills-list li:hover {
-            background: rgba(56, 189, 248, 0.15);
-            border-color: #38bdf8;
-            color: #38bdf8;
+        .skill-box:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--gold-accent);
+            color: var(--gold-accent);
+            transform: translateX(5px);
         }
 
-        /* БАЙЛАНЫШ БЛОГУ (FLEX CONTAINER) */
+        /* БАЙЛАНЫШ ЖАНА СҮРӨТ БЛОГУ */
         .contact-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 30px;
+            gap: 35px;
             flex-wrap: wrap;
         }
 
         .contact-info {
             flex: 1;
-            min-width: 280px;
+            min-width: 290px;
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+        }
+
+        /* БАСРЫЧТАР ДИЗАЙНЫ */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            cursor: pointer;
         }
 
         .btn-telegram {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
             color: white;
-            padding: 14px 28px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.35);
         }
 
         .btn-telegram:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(129, 140, 248, 0.5);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(2, 132, 199, 0.55);
         }
 
-        .profile-img-box {
+        .btn-download {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.55);
+        }
+
+        /* СҮРӨТТҮН ЖАРКЫРАГАН АЛКАГЫ */
+        .profile-box {
             position: relative;
             flex-shrink: 0;
             margin: 0 auto;
         }
 
-        .profile-img-box img {
-            width: 210px;
-            height: 260px;
+        .profile-box::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--gold-accent), var(--cyan-accent));
+            z-index: -1;
+            filter: blur(12px);
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .profile-box img {
+            width: 220px;
+            height: 270px;
             border-radius: 20px;
             object-fit: cover;
             display: block;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
 
-        .profile-img-box:hover img {
-            transform: scale(1.03);
-            border-color: #38bdf8;
+        .profile-box:hover::after {
+            opacity: 1;
         }
 
-        /* ANIMATIONS */
+        /* ANIMATIONS & REVEALS */
         .hidden {
             opacity: 0;
-            transform: translateY(60px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateY(70px) scale(0.96);
+            transition: all 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         @keyframes fadeInDown {
@@ -299,163 +358,172 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        @keyframes pulseBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.8; }
+            50% { transform: translateY(-10px); opacity: 1; }
         }
 
-        /* АДАПТИВНОСТЬ (МОБИЛДИК ТЕЛЕФОНДОР ҮЧҮН) */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .card { padding: 25px; }
+            .hero h1 { font-size: 2.6rem; }
+            .card { padding: 28px; }
             .contact-container { text-align: center; flex-direction: column-reverse; }
-            .card h2::after { left: 50%; transform: translateX(-50%); }
+            .card h2::after { left: 25%; width: 50%; }
         }
     </style>
-
-		<!-- Google жана SEO Мета-тегдер -->
-<meta name="description" content="Ходжебеков Орозбий - Веб иштеп чыгуучу, QuizBoom жана DD Online тиркемелеринин автору.">
-<meta name="keywords" content="Ходжебеков Орозбий, Khodzhebekov, DD Online, QuizBoom, иштеп чыгуучу, Кыргызстан">
-<meta name="author" content="Ходжебеков Орозбий">
-
-<!-- Open Graph (Телеграмда, Гуглда кооз карта болуп көрүнүшү үчүн) -->
-<meta property="og:title" content="Ходжебеков Орозбий - Жеке Сайт">
-<meta property="og:description" content="Веб иштеп чыгуучу, оюн түзүүчү жана DD Online тиркемесинин автору.">
-<meta property="og:image" content="photo.png">
-<meta property="og:type" content="website">
-
-<!-- Google сизди инсан/программист катары таануусу үчүн JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ходжебеков Орозбий",
-  "alternateName": "Orozby Khodzhebekov",
-  "jobTitle": "Developer / Иштеп чыгуучу",
-  "sameAs": [
-    "https://t.me/Khodzhebekovv",
-    "https://play.google.com/store/apps/details?id=com.ddonline.app"
-  ],
-  "knowsAbout": ["Web Development", "DD Online", "QuizBoom", "JavaScript", "HTML/CSS"]
-}
-</script>
 </head>
 <body>
 
-    <!-- СКРОЛЛ ПРОГРЕСС СЫЗЫГЫ -->
-    <div class="scroll-progress" id="progressBar"></div>
+    <!-- ПРОГРЕСС СЫЗЫГЫ -->
+    <div class="scroll-bar" id="progressBar"></div>
 
-    <!-- АРТКЫ ФОНДО КЫЙМЫЛДАГАН НЕОН ШАРЛАР -->
-    <div class="bg-orb orb-1" id="orb1"></div>
-    <div class="bg-orb orb-2" id="orb2"></div>
-    <div class="bg-orb orb-3" id="orb3"></div>
+    <!-- АРТКЫ ФОНДО ЖАРКЫРАП КЫЙМЫЛДАГАН CANVAS УЧКУНДАРЫ -->
+    <canvas id="particles-canvas"></canvas>
 
-    <!-- 1. БАШКЫ ЭКРАН -->
+    <!-- 1. КИНО-БАШКЫ ЭКРАН -->
     <header class="hero">
-        <div class="badge">👋 КОШ КЕЛИҢИЗДЕР</div>
+        <div class="cinematic-tag">⚡ ИНТЕРАКТИВДҮҮ ДҮЙНӨГӨ КОШ КЕЛИҢИЗ</div>
         <h1>Ходжебеков Орозбий</h1>
-        <p>Креативдүү иштеп чыгуучу, оюн түзүүчү жана заманбап санариптик технологияларды сүйүүчү.</p>
-        
-        <div class="scroll-down">
-            <span>Төмөн көздөй сыдырыңыз</span>
-            <span style="font-size: 18px;">↓</span>
+        <p>Креативдүү веб иштеп чыгуучу, интерактивдүү оюндарды түзүүчү жана <b>DD Online</b> & <b>QuizBoom</b> платформаларынын автору.</p>
+
+        <div class="scroll-hint">
+            <span>ТӨМӨН КӨЗДӨЙ СЫДЫРЫҢЫЗ</span>
+            <span style="font-size: 20px;">↓</span>
         </div>
     </header>
 
     <!-- 2. ӨМҮР БАЯН ЖАНА КАРТОЧКАЛАР -->
     <section>
-        
+
         <!-- КАРТОЧКА 1: ӨМҮР БАЯН -->
         <div class="card hidden">
             <h2>Өмүр баян</h2>
             <p>
-                Саламатсызбы! Мен Ходжебеков Орозбиймин. Веб-технологияларга, интерактивдүү оюндарды түзүүгө жана колдонуучуларга эң ыңгайлуу интерфейстерди жасоого кызыгам.
+                Саламатсызбы! Мен Ходжебеков Орозбиймин. Мен заманбап веб-технологияларга, оюндарды иштеп чыгууга жана колдонуучуларга таасир калтыруучу кооз интерфейстерди жасоого кызыгам.
             </p>
             <p>
-                Менин башкы максатым — адамдарга пайда алып келе турган, заманбап дизайнга ээ жана колдонууга жеңил санариптик өнүмдөрдү жаратуу. Ар бир жаңы долбоор мен үчүн жаңы тажрыйба!
+                Менин негизги максатым — адамдарга максималдуу пайда алып келе турган, колдонууга жеңил жана заманбап дизайнга ээ санариптик өнүмдөрдү жаратуу.
             </p>
         </div>
 
         <!-- КАРТОЧКА 2: БИЛИМ ЖАНА КӨНДҮМДӨР -->
         <div class="card hidden">
-            <h2>Билимим жана көндүмдөрүм</h2>
-            <p>
-                Билим берүү тармагы менен заманбап технологияны айкалыштыруу — менин негизги багыттарымдын бири. Мен төмөнкү куралдар аркылуу иштейм:
-            </p>
-            <ul class="skills-list">
-                <li>🚀 HTML5 / CSS / JavaScript</li>
-                <li>🎮 QuizBoom платформасы</li>
-                <li>🎨 Креативдүү Веб-Дизайн</li>
-                <li>📱 Flutter Dart тили </li>
-                <li>⚡ Интерактивдүү Оюндар</li>
-								<li>⚡ DD Online Долбоорунун негиздоочусу </li>
-            </ul>
+            <h2>Билимим жана Технологиялар</h2>
+            <p>Билим берүү жана заманбап интерактивдүү технологияларды айкалыштыруу — менин негизги багыттарымдын бири:</p>
+
+            <div class="skills-grid">
+                <div class="skill-box">🚀 HTML5 / CSS3 / JavaScript</div>
+                <div class="skill-box">🎮 QuizBoom платформасы</div>
+                <div class="skill-box">📱 DD Online Тиркемеси</div>
+                <div class="skill-box">🎨 Креативдүү Веб-Дизайн</div>
+                <div class="skill-box">⚡ Firebase & Cloud Hosting</div>
+                <div class="skill-box">🔥 UI/UX Интерфейстер</div>
+            </div>
         </div>
 
-        <!-- КАРТОЧКА 3: БАЙЛАНЫШ ЖАНА СҮРӨТ -->
+        <!-- КАРТОЧКА 3: БАЙЛАНЫШ ЖАНА ДОЛБООРЛОР -->
         <div class="card hidden">
-    <h2>Байланыш жана Долбоорлор</h2>
-    <div class="contact-container">
-        
-        <!-- Сол тарап: Тексттер жана Баскычтар -->
-        <div class="contact-info">
-            
-            <!-- 1-Блок: Телеграм байланыш -->
-            <div class="contact-item">
-                <p>Эгерде менин долбоорлорум кызыктырса же биргеликте иштешүү каалооңуз болсо, түз байланышсаңыз болот!</p>
-                <a href="https://t.me/Khodzhebekovv" target="_blank" class="btn-telegram">
-                    ✈️ Телеграмдан жазуу
-                </a>
+            <h2>Байланыш жана Долбоорлор</h2>
+
+            <div class="contact-container">
+                <div class="contact-info">
+
+                    <!-- Телеграм байланыш -->
+                    <div class="contact-item">
+                        <p>Эгерде менин долбоорлорум кызыктырса же биргеликте иштешүү каалооңуз болсо, түз байланышсаңыз болот:</p>
+                        <a href="https://t.me/Khodzhebekovv" target="_blank" class="btn-action btn-telegram">
+                            ✈️ Телеграмдан жазуу
+                        </a>
+                    </div>
+
+                    <!-- DD Online жүктөө -->
+                    <div class="contact-item" style="margin-top: 30px;">
+                        <p><b>DD Online</b> тиркемесин мобилдик телефонуңузга жүктөп алыңыз:</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.ddonline.app" target="_blank" class="btn-action btn-download">
+                            📲 DD Online жүктөө
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Сүрөт -->
+                <div class="profile-box">
+                    <img src="photo.png" alt="Ходжебеков Орозбийдин сүрөтү">
+                </div>
             </div>
-
-            <!-- 2-Блок: DD Online жүктөө -->
-            <div class="contact-item" style="margin-top: 25px;">
-                <p><b>DD Online</b> тиркемесин жүктөп алуу шилтемеси:</p>
-                <a href="https://play.google.com/store/apps/details?id=com.ddonline.app" target="_blank" class="btn-telegram btn-download">
-                    📲 DD Online жүктөө
-                </a>
-            </div>
-
         </div>
-        
-        <!-- Оң тарап: Сүрөт -->
-        <div class="profile-img-box">
-            <img src="photo.png" alt="Ходжебеков Орозбийдин сүрөтү">
-        </div>
-
-    </div>
-</div>
 
     </section>
 
-    <!-- СКРОЛЛ АНИМАЦИЯЛАРЫ ЖАНА ПАРАЛЛАКС JAVASCRIPT -->
+    <!-- ЭФФЕКТТЕР ЖАНА КЫЙМЫЛ-АРАКЕТ СКРИПТТЕРИ -->
     <script>
-        // 1. СКРОЛЛ БОЛГОНДО ЭЛЕМЕНТТЕРДИН ЧЫГУУСУ (INTERSECTION OBSERVER)
+        // 1. АРТКЫ ФОНДО АЛТЫН ЖАНА НЕОН УЧКУНДАРДЫ АНИМАЦИЯЛОО (CANVAS)
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 45;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                color: Math.random() > 0.5 ? '#f59e0b' : '#06b6d4',
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: -Math.random() * 0.6 - 0.2,
+                opacity: Math.random() * 0.7 + 0.3
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // 2. СКРОЛЛ БОЛГОНДО КАРТОЧКАЛАРДЫН ЧЫГУУСУ (INTERSECTION OBSERVER)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12 });
 
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
+        document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
 
-        // 2. АРТКЫ ФОНДОГУ НЕОН ШАРЛАРДЫ КЫЙМЫЛДАТУУ (PARALLAX EFFECT) ЖАНА ПРОГРЕСС-БАР
+        // 3. СКРОЛЛ ПРОГРЕСС СЫЗЫГЫ
         window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-
-            // Прогресс барды жаңылоо
-            const winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrolled / winHeight) * 100;
-            document.getElementById('progressBar').style.width = scrollPercent + '%';
-
-            // Арткы фондогу шарларды ар кандай ылдамдыкта кыймылдатуу
-            document.getElementById('orb1').style.transform = `translateY(${scrolled * 0.3}px) translateX(${scrolled * 0.1}px)`;
-            document.getElementById('orb2').style.transform = `translateY(${-scrolled * 0.2}px)`;
-            document.getElementById('orb3').style.transform = `translateY(${scrolled * 0.15}px)`;
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
         });
     </script>
 
